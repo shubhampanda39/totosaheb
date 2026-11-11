@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Toto ✨ 11:11 Wish</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0f0b1e;
+            color: #fce7f3;
+            overflow-x: hidden;
+            margin: 0;
+        }
+        .font-handwriting {
+            font-family: 'Dancing Script', cursive;
+        }
+        /* Custom Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(236, 72, 153, 0.2);
+        }
+        .glass-card-light {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+        /* Neon Glow Text */
+        .glow-text {
+            text-shadow: 0 0 15px rgba(244, 114, 182, 0.8), 0 0 30px rgba(236, 72, 153, 0.5);
+        }
+        .glow-box {
+            box-shadow: 0 0 25px rgba(244, 114, 182, 0.4);
+        }
+        /* Custom Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 2.5s ease-in-out infinite;
+        }
+        /* Smooth Page Transition */
+        .page {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .page.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        /* Custom Option Button styling */
+        .quiz-opt {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .quiz-opt:hover {
+            transform: translateY(-2px) scale(1.01);
+            background: rgba(244, 114, 182, 0.25);
+            border-color: rgba(244, 114, 182, 0.6);
+        }
+        .quiz-opt.selected {
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            border-color: #f472b6;
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.6);
+            color: #ffffff;
+        }
+        /* Hide scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 11, 30, 0.5);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(236, 72, 153, 0.4);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative p-3 sm:p-6 select-none overflow-x-hidden">
+
+    <!-- Live Animated Background Canvas (Hearts & Stars) -->
+    <canvas id="bgCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- Main Outer Container -->
+    <main class="w-full max-w-xl z-10 relative">
+
+        <!-- Header Bar with Progress -->
+        <header class="mb-4 text-center glass-card p-3 rounded-2xl flex items-center justify-between px-5 border-pink-500/30">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid font-bold text-pink-400 text-lg">✨</i>
+                <span class="font-semibold text-xs sm:text-sm text-pink-200 tracking-wider uppercase">11:11 Special</span>
+            </div>
+            <!-- Step Counter -->
+            <div id="stepCounter" class="text-xs font-bold bg-pink-500/20 text-pink-300 px-3 py-1 rounded-full border border-pink-500/30">
+                1 / 9
+            </div>
+        </header>
+
+        <!-- Dynamic Container for Pages -->
+        <div id="pagesContainer" class="relative">
+
+            <!-- PAGE 1: 11:11 Romantic Opening Message -->
+            <section id="page-1" class="page active flex-col items-center justify-center glass-card rounded-3xl p-6 sm:p-8 text-center min-h-[480px]">
+                <div class="animate-float mb-3 text-pink-400">
+                    <span class="text-6xl sm:text-7xl">✨ 11:11 ✨</span>
+                </div>
+                <h1 class="font-handwriting text-4xl sm:text-5xl font-bold text-pink-300 mb-2 glow-text">
+                    Make A Wish, My Toto!
+                </h1>
+                <div class="w-16 h-1 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full my-3"></div>
+                
+                <p class="text-pink-100/90 text-sm sm:text-base leading-relaxed mb-6 max-w-md">
+                    Today, at exactly <strong>11:11</strong>, I want to tell you something from the bottom of my heart... 💖
+                    <br><br>
+                    You are the <span class="text-pink-300 font-semibold underline decoration-pink-400 decoration-2">most important part of my life</span>. I can never fully explain in words just how crucial and special your role is in my world. 
+                    <br><br>
+                    Thank you for all your unending support, love, and care. You mean everything to me! 
+                </p>
+
+                <p class="text-xs text-pink-300/80 italic mb-6">
+                    Ready for a little fun journey I made just for you?
+                </p>
+
+                <button onclick="nextPage()" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold rounded-full shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 transition-all duration-300 flex items-center justify-center gap-3 group text-base">
+                    <span>Let's Play Our Love Quiz!</span>
+                    <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </section>
+
+            <!-- PAGE 2: Quiz Q1 -->
+            <section id="page-2" class="page flex-col justify-between glass-card rounded-3xl p-6 sm:p-8 min-h-[480px]">
+                <div>
+                    <div class="flex items-center justify-between text-xs text-pink-300/80 mb-3 font-semibold uppercase tracking-wider">
+                        <span>Question 01 / 07</span>
+                        <span><i class="fa-solid fa-heart text-pink-400"></i> Sweet Memory</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-6 leading-snug">
+                        What is my absolute favorite thing about you, Toto? 🥺
+                    </h2>
+
+                    <div class="space-y-3" id="q1-options">
+                        <button onclick="selectOption(this, 1)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>A) Your adorable smile that brightens my darkest days</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 1)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>B) The caring & supportive way you always stand by me</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 1)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>C) Your cute laugh and funny habits</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 1)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>D) All of the above! (You are literally perfect ✨)</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="q1-feedback" class="hidden my-2 text-center text-xs text-pink-300 font-medium animate-pulse">
+                    ✨ That's right! You are my complete package! ✨
+                </div>
+
+                <button id="next-btn-1" disabled onclick="nextPage()" class="mt-6 w-full py-3.5 bg-pink-500/40 text-white/50 font-bold rounded-2xl cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2">
+                    <span>Next Question</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </section>
+
+            <!-- PAGE 3: Quiz Q2 -->
+            <section id="page-3" class="page flex-col justify-between glass-card rounded-3xl p-6 sm:p-8 min-h-[480px]">
+                <div>
+                    <div class="flex items-center justify-between text-xs text-pink-300/80 mb-3 font-semibold uppercase tracking-wider">
+                        <span>Question 02 / 07</span>
+                        <span><i class="fa-solid fa-sparkles text-pink-400"></i> Magical Moments</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-6 leading-snug">
+                        When I make a 11:11 wish every single day, who is it about? 🌟
+                    </h2>
+
+                    <div class="space-y-3" id="q2-options">
+                        <button onclick="selectOption(this, 2)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>A) Always about you & our happy future together</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 2)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>B) Winning a lifetime supply of your cuddles</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 2)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>C) Keeping you safe, happy, and loved forever</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 2)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>D) Every single 11:11 wish is 100% for my Toto!</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="q2-feedback" class="hidden my-2 text-center text-xs text-pink-300 font-medium animate-pulse">
+                    🌌 Every star in the sky knows my wish is you! 🌌
+                </div>
+
+                <button id="next-btn-2" disabled onclick="nextPage()" class="mt-6 w-full py-3.5 bg-pink-500/40 text-white/50 font-bold rounded-2xl cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2">
+                    <span>Next Question</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </section>
+
+            <!-- PAGE 4: Quiz Q3 -->
+            <section id="page-4" class="page flex-col justify-between glass-card rounded-3xl p-6 sm:p-8 min-h-[480px]">
+                <div>
+                    <div class="flex items-center justify-between text-xs text-pink-300/80 mb-3 font-semibold uppercase tracking-wider">
+                        <span>Question 03 / 07</span>
+                        <span><i class="fa-solid fa-face-smile-wink text-pink-400"></i> Cute Quirks</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-6 leading-snug">
+                        How much support do you give me in my life, Toto? 🫂
+                    </h2>
+
+                    <div class="space-y-3" id="q3-options">
+                        <button onclick="selectOption(this, 3)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>A) 100% - You're my rock</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 3)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>B) 1000% - My biggest cheerleader and comfort</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 3)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>C) Infinite% - Words can never express enough!</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="q3-feedback" class="hidden my-2 text-center text-xs text-pink-300 font-medium animate-pulse">
+                    🤗 Thank you for being my anchor through everything!
+                </div>
+
+                <button id="next-btn-3" disabled onclick="nextPage()" class="mt-6 w-full py-3.5 bg-pink-500/40 text-white/50 font-bold rounded-2xl cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2">
+                    <span>Next Question</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </section>
+
+            <!-- PAGE 5: Quiz Q4 -->
+            <section id="page-5" class="page flex-col justify-between glass-card rounded-3xl p-6 sm:p-8 min-h-[480px]">
+                <div>
+                    <div class="flex items-center justify-between text-xs text-pink-300/80 mb-3 font-semibold uppercase tracking-wider">
+                        <span>Question 04 / 07</span>
+                        <span><i class="fa-solid fa-cloud-moon text-pink-400"></i> Dreamy Vibe</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-6 leading-snug">
+                        What happens when I hear your voice or get your message? 📱❤️
+                    </h2>
+
+                    <div class="space-y-3" id="q4-options">
+                        <button onclick="selectOption(this, 4)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>A) My heart immediately does a happy dance! 💃</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 4)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>B) A huge silly smile pops up on my face automatically!</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 4)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>C) All my stress disappears instantly ✨</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 4)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>D) All of the above, every single time! 🥰</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="q4-feedback" class="hidden my-2 text-center text-xs text-pink-300 font-medium animate-pulse">
+                    💘 You truly have that magic power over me!
+                </div>
+
+                <button id="next-btn-4" disabled onclick="nextPage()" class="mt-6 w-full py-3.5 bg-pink-500/40 text-white/50 font-bold rounded-2xl cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2">
+                    <span>Next Question</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </section>
+
+            <!-- PAGE 6: Quiz Q5 -->
+            <section id="page-6" class="page flex-col justify-between glass-card rounded-3xl p-6 sm:p-8 min-h-[480px]">
+                <div>
+                    <div class="flex items-center justify-between text-xs text-pink-300/80 mb-3 font-semibold uppercase tracking-wider">
+                        <span>Question 05 / 07</span>
+                        <span><i class="fa-solid fa-mug-hot text-pink-400"></i> Cozy Thoughts</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-6 leading-snug">
+                        What is my ideal way to spend time with you? ☕✨
+                    </h2>
+
+                    <div class="space-y-3" id="q5-options">
+                        <button onclick="selectOption(this, 5)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>A) Cute dates & exploring new fun places</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 5)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>B) Cozy late-night talks about everything and nothing</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 5)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>C) Just sitting in peace, holding your hand</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 5)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>D) Literally ANY second spent with my Toto is heaven ❤️</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="q5-feedback" class="hidden my-2 text-center text-xs text-pink-300 font-medium animate-pulse">
+                    🛋️ Anywhere with you feels like home!
+                </div>
+
+                <button id="next-btn-5" disabled onclick="nextPage()" class="mt-6 w-full py-3.5 bg-pink-500/40 text-white/50 font-bold rounded-2xl cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2">
+                    <span>Next Question</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </section>
+
+            <!-- PAGE 7: Quiz Q6 -->
+            <section id="page-7" class="page flex-col justify-between glass-card rounded-3xl p-6 sm:p-8 min-h-[480px]">
+                <div>
+                    <div class="flex items-center justify-between text-xs text-pink-300/80 mb-3 font-semibold uppercase tracking-wider">
+                        <span>Question 06 / 07</span>
+                        <span><i class="fa-solid fa-infinity text-pink-400"></i> Endless Love</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-6 leading-snug">
+                        Who is allowed to hold the key to my heart forever? 🔑💖
+                    </h2>
+
+                    <div class="space-y-3" id="q6-options">
+                        <button onclick="selectOption(this, 6)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>A) Only Toto!</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 6)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>B) My one and only Toto!</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 6)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>C) Definitely Toto forever & ever!</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="q6-feedback" class="hidden my-2 text-center text-xs text-pink-300 font-medium animate-pulse">
+                    🔒 Locked tight in my heart forever!
+                </div>
+
+                <button id="next-btn-6" disabled onclick="nextPage()" class="mt-6 w-full py-3.5 bg-pink-500/40 text-white/50 font-bold rounded-2xl cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2">
+                    <span>Next Question</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </section>
+
+            <!-- PAGE 8: Quiz Q7 -->
+            <section id="page-8" class="page flex-col justify-between glass-card rounded-3xl p-6 sm:p-8 min-h-[480px]">
+                <div>
+                    <div class="flex items-center justify-between text-xs text-pink-300/80 mb-3 font-semibold uppercase tracking-wider">
+                        <span>Question 07 / 07</span>
+                        <span><i class="fa-solid fa-gift text-pink-400"></i> Final Quiz Question</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-6 leading-snug">
+                        Are you ready to see your final surprise message, my love? 💌
+                    </h2>
+
+                    <div class="space-y-3" id="q7-options">
+                        <button onclick="selectOption(this, 7)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>A) YES! Show me now! 😍</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                        <button onclick="selectOption(this, 7)" class="quiz-opt w-full text-left p-4 rounded-2xl glass-card-light text-sm sm:text-base flex items-center justify-between">
+                            <span>B) Absolutely, I love you! ❤️</span>
+                            <i class="fa-regular fa-circle text-pink-300/50 opt-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="q7-feedback" class="hidden my-2 text-center text-xs text-pink-300 font-medium animate-pulse">
+                    🎉 Yay! Unlocking your grand grand surprise...
+                </div>
+
+                <button id="next-btn-7" disabled onclick="nextPage(); triggerGrandFinale();" class="mt-6 w-full py-3.5 bg-pink-500/40 text-white/50 font-bold rounded-2xl cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2">
+                    <span>Reveal Grand Finale ✨</span>
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+            </section>
+
+            <!-- PAGE 9: Grand Finale / Love Declaration -->
+            <section id="page-9" class="page flex-col items-center justify-center glass-card rounded-3xl p-6 sm:p-8 text-center min-h-[500px]">
+                <!-- Floating Animated Heart -->
+                <div class="relative mb-4">
+                    <div class="text-6xl sm:text-7xl animate-pulse-glow">💖</div>
+                    <div class="absolute -top-2 -right-2 text-2xl animate-bounce">✨</div>
+                </div>
+
+                <h1 class="font-handwriting text-4xl sm:text-5xl font-bold text-pink-300 mb-2 glow-text">
+                    I Love You So Much, Toto!
+                </h1>
+
+                <p class="text-xs uppercase tracking-widest text-pink-400 font-bold mb-4">
+                    ✨ 11:11 Wish Granted Forever ✨
+                </p>
+
+                <div class="glass-card-light p-5 rounded-2xl text-pink-100 text-xs sm:text-sm leading-relaxed mb-6 max-w-md border-pink-400/30">
+                    <p class="mb-3">
+                        "Thank you for being the most incredible, supportive, and loving partner. You fill my world with bright light and endless happiness."
+                    </p>
+                    <p>
+                        No matter how far we go, remember that you always have a special, irreplaceable place in my heart!
+                    </p>
+                </div>
+
+                <!-- Interactive Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+                    <button onclick="sendVirtualHug()" class="flex-1 py-3 px-4 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold rounded-2xl shadow-lg shadow-pink-500/30 transition-all duration-300 flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-solid fa-hands-holding-child"></i>
+                        <span>Send Virtual Hug 🤗</span>
+                    </button>
+                    <button onclick="openLoveLetter()" class="flex-1 py-3 px-4 bg-purple-600/40 hover:bg-purple-600/60 text-pink-200 font-bold rounded-2xl border border-purple-400/30 transition-all duration-300 flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-solid fa-envelope-open-text"></i>
+                        <span>Love Note 💌</span>
+                    </button>
+                </div>
+
+                <!-- Replay Button -->
+                <button onclick="restartJourney()" class="mt-6 text-xs text-pink-300/70 hover:text-pink-300 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <span>Replay surprise from start</span>
+                </button>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Modal for Special Note -->
+    <div id="loveNoteModal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 hidden items-center justify-center p-4 transition-all duration-300">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-lg w-full text-center relative border-pink-500/40 animate-float">
+            <button onclick="closeLoveLetter()" class="absolute top-4 right-4 text-pink-300 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-4xl mb-2">💌</div>
+            <h3 class="font-handwriting text-3xl font-bold text-pink-300 mb-3">A Secret Note For Toto</h3>
+            <p class="text-sm text-pink-100/90 leading-relaxed mb-6 font-light">
+                "If I had a single star for every time you made me smile or supported me through hard times, I'd be holding an entire galaxy in my hands. Thank you for being YOU, Toto."
+            </p>
+            <button onclick="closeLoveLetter()" class="px-6 py-2.5 bg-pink-500 hover:bg-pink-600 text-white text-xs font-bold rounded-full transition-all">
+                Close Note ✨
+            </button>
+        </div>
+    </div>
+
+    <!-- Hug Notification Toast -->
+    <div id="hugToast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-pink-600 text-white px-6 py-3 rounded-full shadow-2xl z-50 hidden items-center gap-2 text-xs sm:text-sm font-semibold border border-pink-300/30">
+        <span>🤗 A giant warm hug was delivered straight to Toto!</span>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        // Current Page Tracking
+        let currentPage = 1;
+        const totalPages = 9;
+
+        // Initialize Background Canvas
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Canvas Particle Class (Hearts & Stars)
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 100;
+                this.size = Math.random() * 14 + 8;
+                this.speedY = Math.random() * 1.2 + 0.5;
+                this.speedX = Math.sin(Math.random() * Math.PI) * 0.5;
+                this.opacity = Math.random() * 0.7 + 0.3;
+                this.type = Math.random() > 0.4 ? 'heart' : 'star';
+                this.color = `hsla(${Math.random() * 40 + 330}, 100%, 75%, ${this.opacity})`;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotSpeed = (Math.random() - 0.5) * 0.02;
+            }
+
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotSpeed;
+
+                if (this.y < -30) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+
+                if (this.type === 'heart') {
+                    // Draw SVG Heart path on canvas
+                    ctx.beginPath();
+                    const topCurveHeight = this.size * 0.3;
+                    ctx.moveTo(0, topCurveHeight);
+                    ctx.bezierCurveTo(0, 0, -this.size / 2, 0, -this.size / 2, topCurveHeight);
+                    ctx.bezierCurveTo(-this.size / 2, (this.size + topCurveHeight) / 2, 0, this.size, 0, this.size);
+                    ctx.bezierCurveTo(0, this.size, this.size / 2, (this.size + topCurveHeight) / 2, this.size / 2, topCurveHeight);
+                    ctx.bezierCurveTo(this.size / 2, 0, 0, 0, 0, topCurveHeight);
+                    ctx.closePath();
+                    ctx.fill();
+                } else {
+                    // Draw Twinkling Star
+                    ctx.beginPath();
+                    for (let i = 0; i < 5; i++) {
+                        ctx.lineTo(Math.cos((18 + i * 72) * Math.PI / 180) * this.size / 2, -Math.sin((18 + i * 72) * Math.PI / 180) * this.size / 2);
+                        ctx.lineTo(Math.cos((54 + i * 72) * Math.PI / 180) * this.size / 4, -Math.sin((54 + i * 72) * Math.PI / 180) * this.size / 4);
+                    }
+                    ctx.closePath();
+                    ctx.fill();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        // Generate Particles
+        const particleCount = window.innerWidth < 640 ? 35 : 65;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        // Animation Loop
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateCanvas);
+        }
+
+        window.onload = function() {
+            animateCanvas();
+        };
+
+        // Page Navigation Logic
+        function updatePageUI() {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const activePage = document.getElementById(`page-${currentPage}`);
+            if (activePage) {
+                activePage.classList.add('active');
+            }
+
+            // Update Counter
+            document.getElementById('stepCounter').innerText = `${currentPage} / ${totalPages}`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                updatePageUI();
+            }
+        }
+
+        function restartJourney() {
+            currentPage = 1;
+            // Reset option selections
+            document.querySelectorAll('.quiz-opt').forEach(opt => {
+                opt.classList.remove('selected');
+                const icon = opt.querySelector('.opt-icon');
+                if (icon) {
+                    icon.className = 'fa-regular fa-circle text-pink-300/50 opt-icon';
+                }
+            });
+            // Disable buttons
+            for (let i = 1; i <= 7; i++) {
+                const btn = document.getElementById(`next-btn-${i}`);
+                if (btn) {
+                    btn.disabled = true;
+                    btn.className = 'mt-6 w-full py-3.5 bg-pink-500/40 text-white/50 font-bold rounded-2xl cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2';
+                }
+                const fb = document.getElementById(`q${i}-feedback`);
+                if (fb) fb.classList.add('hidden');
+            }
+            updatePageUI();
+        }
+
+        // Quiz Option Selection
+        function selectOption(button, questionNum) {
+            const parent = button.parentElement;
+            // Deselect siblings
+            parent.querySelectorAll('.quiz-opt').forEach(btn => {
+                btn.classList.remove('selected');
+                const icon = btn.querySelector('.opt-icon');
+                if (icon) {
+                    icon.className = 'fa-regular fa-circle text-pink-300/50 opt-icon';
+                }
+            });
+
+            // Select clicked button
+            button.classList.add('selected');
+            const icon = button.querySelector('.opt-icon');
+            if (icon) {
+                icon.className = 'fa-solid fa-circle-check text-pink-200 opt-icon';
+            }
+
+            // Enable Next Button
+            const nextBtn = document.getElementById(`next-btn-${questionNum}`);
+            if (nextBtn) {
+                nextBtn.disabled = false;
+                nextBtn.className = 'mt-6 w-full py-3.5 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold rounded-2xl shadow-lg shadow-pink-500/30 cursor-pointer transition-all duration-300 flex items-center justify-center gap-2 group';
+            }
+
+            // Show Feedback
+            const feedback = document.getElementById(`q${questionNum}-feedback`);
+            if (feedback) {
+                feedback.classList.remove('hidden');
+            }
+
+            // Confetti Burst on selection
+            confetti({
+                particleCount: 25,
+                spread: 60,
+                origin: { y: 0.7 },
+                colors: ['#ec4899', '#f472b6', '#ffffff']
+            });
+        }
+
+        // Grand Finale Confetti
+        function triggerGrandFinale() {
+            setTimeout(() => {
+                const duration = 3 * 1000;
+                const end = Date.now() + duration;
+
+                (function frame() {
+                    confetti({
+                        particleCount: 5,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 },
+                        colors: ['#ec4899', '#f472b6', '#be185d']
+                    });
+                    confetti({
+                        particleCount: 5,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 },
+                        colors: ['#ec4899', '#f472b6', '#be185d']
+                    });
+
+                    if (Date.now() < end) {
+                        requestAnimationFrame(frame);
+                    }
+                }());
+            }, 300);
+        }
+
+        // Virtual Hug Action
+        function sendVirtualHug() {
+            const toast = document.getElementById('hugToast');
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+
+            confetti({
+                particleCount: 50,
+                spread: 80,
+                origin: { y: 0.8 },
+                colors: ['#f472b6', '#ffffff']
+            });
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3000);
+        }
+
+        // Modal Controls
+        function openLoveLetter() {
+            const modal = document.getElementById('loveNoteModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeLoveLetter() {
+            const modal = document.getElementById('loveNoteModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>
